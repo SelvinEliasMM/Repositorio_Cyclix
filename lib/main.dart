@@ -5,6 +5,7 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 
 import 'screens/login.dart';
 import 'screens/main_shell.dart';
+import 'screens/perfil_screen.dart';
 import 'theme/cyclix_colors.dart';
 
 void main() {
@@ -46,9 +47,10 @@ class CyclixApp extends StatelessWidget {
       // Primero se abre el login
       home: const LoginScreen(),
 
-      // Ruta para ir a la pantalla principal después del login
+      // Rutas de la app
       routes: {
         '/main': (context) => const MainShell(),
+        '/perfil': (context) => const PerfilScreen(),
       },
     );
   }

@@ -5,6 +5,7 @@ import '../widgets/cyclix_bottom_nav.dart';
 import '../widgets/cyclix_header.dart';
 import 'map_screen.dart';
 import 'qr_scan_screen.dart';
+import 'perfil_screen.dart';
 
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
@@ -21,15 +22,14 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       backgroundColor: CyclixColors.scaffoldBackground,
       appBar: const CyclixHeader(),
+
       body: switch (_index) {
         0 => const MapScreen(),
         1 => const QrScanScreen(embeddedInShell: true),
-        _ => _PlaceholderTab(
-            title: 'Perfil',
-            message:
-                'Pantalla de perfil de usuario (otro módulo del proyecto grupal).',
-          ),
+        2 => const PerfilScreen(),
+        _ => const PerfilScreen(),
       },
+
       bottomNavigationBar: CyclixBottomNav(
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
