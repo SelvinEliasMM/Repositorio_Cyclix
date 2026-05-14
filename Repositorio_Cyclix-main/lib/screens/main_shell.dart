@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'perfil_screen.dart';
 import '../theme/cyclix_colors.dart';
 import '../widgets/cyclix_bottom_nav.dart';
 import '../widgets/cyclix_header.dart';
+import '../widgets/cyclix_drawer.dart';
 import 'map_screen.dart';
 import 'qr_scan_screen.dart';
 
@@ -19,16 +20,13 @@ class _MainShellState extends State<MainShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CyclixColors.scaffoldBackground,
+      backgroundColor: CyclixColors.backgroundWhite,
       appBar: const CyclixHeader(),
+      drawer: const CyclixDrawer(),
       body: switch (_index) {
         0 => const MapScreen(),
         1 => const QrScanScreen(embeddedInShell: true),
-        _ => _PlaceholderTab(
-            title: 'Perfil',
-            message:
-                'Pantalla de perfil de usuario (otro módulo del proyecto grupal).',
-          ),
+        _ => const PerfilScreen(),
       },
       bottomNavigationBar: CyclixBottomNav(
         currentIndex: _index,

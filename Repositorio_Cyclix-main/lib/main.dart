@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'screens/login.dart';
+import 'screens/Login.dart';
 import 'screens/main_shell.dart';
 import 'theme/cyclix_colors.dart';
 
@@ -32,14 +33,34 @@ class CyclixApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: CyclixColors.brandGreen,
-          primary: CyclixColors.brandGreen,
+          seedColor: CyclixColors.primaryBlue,
+          primary: CyclixColors.primaryBlue,
+          secondary: CyclixColors.accentGreen,
+          surface: CyclixColors.backgroundWhite,
         ),
         useMaterial3: true,
-        scaffoldBackgroundColor: CyclixColors.scaffoldBackground,
+        textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+          displayLarge: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          displayMedium: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          displaySmall: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          headlineLarge: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          headlineMedium: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          headlineSmall: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: CyclixColors.textDark),
+          titleLarge: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: CyclixColors.textDark),
+          titleMedium: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: CyclixColors.textDark),
+          titleSmall: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: CyclixColors.textDark),
+          bodyLarge: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: CyclixColors.textDark),
+          bodyMedium: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: CyclixColors.textDark),
+        ),
+        scaffoldBackgroundColor: CyclixColors.backgroundWhite,
+        cardTheme: const CardThemeData(
+          color: CyclixColors.cardGrey,
+        ),
         appBarTheme: const AppBarTheme(
+          backgroundColor: CyclixColors.backgroundWhite,
           elevation: 0,
           scrolledUnderElevation: 0,
+          iconTheme: IconThemeData(color: CyclixColors.textDark),
         ),
       ),
 

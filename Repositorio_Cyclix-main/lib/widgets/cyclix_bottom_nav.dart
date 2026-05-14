@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../theme/cyclix_colors.dart';
 
 class CyclixBottomNav extends StatelessWidget {
@@ -14,28 +14,38 @@ class CyclixBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      selectedIndex: currentIndex,
-      onDestinationSelected: onTap,
-      indicatorColor: CyclixColors.brandGreen.withValues(alpha: 0.15),
-      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-      destinations: const [
-        NavigationDestination(
-          icon: Icon(Icons.home_outlined, color: CyclixColors.brandGreen),
-          selectedIcon: Icon(Icons.home, color: CyclixColors.brandGreen),
-          label: 'Inicio',
+    return Container(
+      decoration: BoxDecoration(
+        color: CyclixColors.backgroundWhite,
+        border: const Border(
+          top: BorderSide(color: Color(0xFFEEEEEE), width: 1),
         ),
-        NavigationDestination(
-          icon: Icon(Icons.search, color: CyclixColors.brandGreen),
-          selectedIcon: Icon(Icons.search, color: CyclixColors.brandGreen),
-          label: 'Buscar',
-        ),
-        NavigationDestination(
-          icon: Icon(Icons.person_outline, color: CyclixColors.brandGreen),
-          selectedIcon: Icon(Icons.person, color: CyclixColors.brandGreen),
-          label: 'Perfil',
-        ),
-      ],
+      ),
+      child: NavigationBar(
+        backgroundColor: CyclixColors.backgroundWhite,
+        selectedIndex: currentIndex,
+        onDestinationSelected: onTap,
+        indicatorColor: CyclixColors.primaryBlue.withOpacity(0.1),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        elevation: 0,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home_outlined, color: CyclixColors.primaryBlue),
+            selectedIcon: const Icon(Icons.home, color: CyclixColors.primaryBlue),
+            label: 'Inicio',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.search, color: CyclixColors.primaryBlue),
+            selectedIcon: const Icon(Icons.search, color: CyclixColors.primaryBlue),
+            label: 'Buscar',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.person_outline, color: CyclixColors.primaryBlue),
+            selectedIcon: const Icon(Icons.person, color: CyclixColors.primaryBlue),
+            label: 'Perfil',
+          ),
+        ],
+      ),
     );
   }
 }

@@ -21,7 +21,7 @@ class _PagoScreenState extends State<PagoScreen> {
         content: Text(mensaje),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 2),
-        backgroundColor: CyclixColors.brandGreen,
+        backgroundColor: CyclixColors.accentGreen,
       ),
     );
   }
@@ -29,7 +29,7 @@ class _PagoScreenState extends State<PagoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CyclixColors.scaffoldBackground,
+      backgroundColor: CyclixColors.backgroundWhite,
       appBar: const CyclixHeader(showBack: true),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -62,13 +62,13 @@ class _PagoScreenState extends State<PagoScreen> {
               const SizedBox(height: 8),
               OutlinedButton.icon(
                 onPressed: () => _snack('Agregar tarjeta — próximamente'),
-                icon: Icon(Icons.add, color: CyclixColors.brandGreen),
-                label: Text(
+                icon: const Icon(Icons.add, color: CyclixColors.accentGreen),
+                label: const Text(
                   'Agregar nueva tarjeta',
-                  style: TextStyle(color: CyclixColors.brandGreen),
+                  style: TextStyle(color: CyclixColors.accentGreen),
                 ),
                 style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: CyclixColors.brandGreen),
+                  side: const BorderSide(color: CyclixColors.accentGreen),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -78,7 +78,15 @@ class _PagoScreenState extends State<PagoScreen> {
               const SizedBox(height: 36),
               CyclixPrimaryButton(
                 label: 'Pagar Q.90.00',
-                onPressed: () => _snack('Procesando pago — próximamente'),
+                onPressed: () {
+                  _snack('¡Pago realizado con éxito!');
+                  // Esperamos un momento para que el usuario vea el mensaje y luego volvemos al inicio
+                  Future.delayed(const Duration(seconds: 2), () {
+                    if (mounted) {
+                      Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+                    }
+                  });
+                },
               ),
             ],
           ),
@@ -101,12 +109,12 @@ class _ConfirmacionHeader extends StatelessWidget {
           width: 72,
           height: 72,
           decoration: BoxDecoration(
-            color: CyclixColors.brandGreen.withValues(alpha: 0.12),
+            color: CyclixColors.accentGreen.withValues(alpha: 0.12),
             shape: BoxShape.circle,
           ),
-          child: Icon(
+          child: const Icon(
             Icons.check_circle_outline_rounded,
-            color: CyclixColors.brandGreen,
+            color: CyclixColors.accentGreen,
             size: 44,
           ),
         ),
@@ -116,17 +124,17 @@ class _ConfirmacionHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color: CyclixColors.textDark,
             height: 1.3,
           ),
         ),
         const SizedBox(height: 6),
-        Text(
+        const Text(
           'Tu viaje ha finalizado',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14,
-            color: CyclixColors.instructionGray,
+            color: Colors.grey,
           ),
         ),
       ],
@@ -144,7 +152,7 @@ class _SectionTitle extends StatelessWidget {
       titulo,
       style: Theme.of(context).textTheme.titleSmall?.copyWith(
         fontWeight: FontWeight.bold,
-        color: Colors.black87,
+        color: CyclixColors.textDark,
       ),
     );
   }
@@ -157,7 +165,7 @@ class _ResumenViaje extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: CyclixColors.cardGrey,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey.shade200),
       ),
@@ -191,12 +199,12 @@ class _FilaResumen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = destacado
-        ? TextStyle(
+        ? const TextStyle(
       fontWeight: FontWeight.bold,
-      color: CyclixColors.brandGreen,
+      color: CyclixColors.accentGreen,
       fontSize: 15,
     )
-        : const TextStyle(color: Colors.black87, fontSize: 14);
+        : const TextStyle(color: CyclixColors.textDark, fontSize: 14);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -232,11 +240,11 @@ class _MetodoPagoTile extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: CyclixColors.backgroundWhite,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color:
-            seleccionado ? CyclixColors.brandGreen : Colors.grey.shade200,
+            seleccionado ? CyclixColors.accentGreen : Colors.grey.shade200,
             width: seleccionado ? 1.5 : 1,
           ),
         ),
@@ -245,8 +253,8 @@ class _MetodoPagoTile extends StatelessWidget {
             Icon(
               icono,
               color: seleccionado
-                  ? CyclixColors.brandGreen
-                  : CyclixColors.instructionGray,
+                  ? CyclixColors.accentGreen
+                  : Colors.grey,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -254,16 +262,16 @@ class _MetodoPagoTile extends StatelessWidget {
                 titulo,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: seleccionado ? Colors.black87 : Colors.black54,
+                  color: seleccionado ? CyclixColors.textDark : Colors.black54,
                 ),
               ),
             ),
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 200),
               child: seleccionado
-                  ? Icon(Icons.check_circle_rounded,
-                  key: const ValueKey('check'),
-                  color: CyclixColors.brandGreen)
+                  ? const Icon(Icons.check_circle_rounded,
+                  key: ValueKey('check'),
+                  color: CyclixColors.accentGreen)
                   : Icon(Icons.circle_outlined,
                   key: const ValueKey('empty'),
                   color: Colors.grey.shade300),

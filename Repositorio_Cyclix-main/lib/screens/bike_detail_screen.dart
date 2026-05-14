@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/bike_info.dart';
 import '../widgets/cyclix_header.dart';
 import '../widgets/cyclix_primary_button.dart';
+import 'viaje_activo_screen.dart';
 
 class BikeDetailScreen extends StatelessWidget {
   const BikeDetailScreen({super.key, required this.bike});
@@ -29,7 +30,7 @@ class BikeDetailScreen extends StatelessWidget {
                     ),
               ),
               const SizedBox(height: 24),
-              Expanded(
+              const Expanded(
                 child: Center(
                   child: Icon(
                     Icons.pedal_bike,
@@ -55,12 +56,9 @@ class BikeDetailScreen extends StatelessWidget {
               CyclixPrimaryButton(
                 label: 'Desbloquear',
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Acción pendiente: el backend confirmará el desbloqueo.',
-                      ),
-                    ),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ViajeActivoScreen()),
                   );
                 },
               ),
